@@ -28,10 +28,13 @@ class AppMain {
         console.log(data, document.getElementById('ShareMe'));
         const sheet = data.sheets.global[0];
 
-
+        render(<SocialBar 
+            url={data.sheets.global[0].shareUrl}
+            title={data.sheets.global[0].shareTitle}
+        />, document.getElementById('ShareMe'));
 
         $$('[data-dyn]').forEach((el) => {
-            console.log(el)
+            // console.log(el)
             el.innerHTML = sheet[el.dataset.dyn];
         });
 
@@ -48,4 +51,4 @@ class AppMain {
 
 }
 
-const app = new AppMain('https://interactive.guim.co.uk/docsdata/1ffFNNOWsyKzzxpxJTK9b_ZKlLnsG_CW1p3d91WxGKVg.json');
+const app = new AppMain('https://interactive.guim.co.uk/docsdata/1YJuvtQuxlx7_gqAnBvicOIfs6JmU7ctfSvKMrgar7Wg.json');
