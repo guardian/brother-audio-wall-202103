@@ -6,10 +6,12 @@ import { render, h } from "preact";
 import SocialBar from 'shared/js/SocialShare';
 import {$, $$} from 'shared/js/util';
 import RelatedContent from "shared/js/RelatedContent";
+import {gsap, Sine} from "gsap";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
+import AudioPlayer from "shared/js/AudioPlayer";
 
 
-
-
+gsap.registerPlugin(ScrollTrigger);
 
 class AppMain {
 
@@ -19,13 +21,16 @@ class AppMain {
         fetch(`${url}?t=${new Date().getTime()}`)
             .then(resp=> resp.json())
             .then(this.init)
+            // .then(setTimeout(this.intro, 2000))
+            // .then(this.intro)
+            .then(this.intro2)
             .catch(err => {
                 console.log(err);
             });
     }
         
     init(data) {
-        console.log(data, document.getElementById('ShareMe'));
+        console.log(this, data, document.getElementById('ShareMe'));
         const sheet = data.sheets.global[0];
 
         render(<SocialBar 
@@ -35,7 +40,11 @@ class AppMain {
 
         $$('[data-dyn]').forEach((el) => {
             // console.log(el)
-            el.innerHTML = sheet[el.dataset.dyn];
+            if (el instanceof Image) {
+                el.src = `<%= path %>/${sheet[el.dataset.dyn]}`;
+            } else {
+                el.innerHTML = sheet[el.dataset.dyn];
+            }
         });
 
         // $('body').addEventListener('click', e => {
@@ -47,8 +56,145 @@ class AppMain {
         $$('.grid a, .related a').forEach(link => {
             link.setAttribute('target', '_blank');
         });
+
+        render( <AudioPlayer title="" src="<%= path %>/audio/nimble.mp3"  />, document.getElementById('aud1'));
+    }
+
+    intro2() {
+            // gsap.from('#Glabs', {duration: 2, autoAlpha: 0, delay: 1});
+            $$('[data-anim]').forEach((el) => {
+                const endPos = el.dataset.endPos ? el.dataset.endPos : '70%';
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 100%',
+                    end: `80% ${endPos}`,
+                    scrub: 1.2,
+                    animation: gsap.from(el,Object.assign({ease:Sine.easeIn}, JSON.parse(el.dataset.anim)))
+                    // markers: true
+                })                
+                
+            });
+
+            // $$('.nimble .collage img:nth-child(3)').forEach((target) => {
+            //      ScrollTrigger.create({
+            //         trigger: target,
+            //         start: 'top 100%',
+            //         end: '80% 70%',
+            //         scrub: 1.2,
+            //         animation: gsap.from(target, {delay: 0.3, y: "30", ease: Sine.easeIn}),
+            //         // markers: true
+            //     })
+    
+            // });
+
+
+            ScrollTrigger.matchMedia({
+                "(min-width: 980px)": function() {
+                    const st = ScrollTrigger.create({
+                        trigger: '.nimble .panel',
+                        start: 'top 0%',
+                        end: 'bottom 100%',
+        
+                        scrub: 2.2,
+                        // animation: gsap.from(target, {delay: 0.3, rotationY: "30", ease: Sine.easeInOut}),
+                        markers: true,
+                        pin: true,
+                        invalidateOnRefresh: true
+        
+                    });
+
+                    return () => {
+                        st.kill();
+                    }
+                }
+            });
+
+            ScrollTrigger.create({
+                trigger: '.nimble .content h2',
+                start: 'top 90%',
+                end: 'bottom 100%',
+
+                scrub: 2.2,
+                animation: gsap.from('.nimble .content h2', {x: "30", alpha:0, ease: Sine.easeIn}),
+                // markers: true,
+                // pin: true,
+                // invalidateOnRefresh: true
+
+            });            
+    }
+    
+    intro() {
+        // gsap.from('#Glabs', {duration: 2, autoAlpha: 0, delay: 1});
+        gsap.from('header h1', {y: 20, alpha: 0, delay: 2});
+
+        $$('.vis.pleft').forEach((target) => {
+             ScrollTrigger.create({
+                trigger: target,
+                start: 'top 100%',
+                scrub: 1.2,
+                animation: gsap.to(target, {delay: 0.3, x: "-10%", ease: Sine.easeInOut}),
+                // markers: true
+            })
+
+        });
+        $$('.vis.pright').forEach((target) => {
+            gsap.set(target, {x: "-20%"});
+             ScrollTrigger.create({
+                trigger: target,
+                start: 'top 100%',
+                scrub: 1.2,
+                animation: gsap.to(target, {delay: 0.3, x: "-10%", ease: Sine.easeInOut}),
+                // markers: true
+            })
+
+        });
+
+        Array.from($$('.content p')).forEach((child) => {
+                
+                ScrollTrigger.create({
+                    trigger: child,
+                    start: 'top 100%',
+                    end: 'top 50%',
+                    scrub: 1,
+                    animation: gsap.from(child, {alpha: 0, x: 40, ease: Sine.easeInOut})
+                })
+
+            });
+
+        // $$('.content').forEach(target => {
+        //     console.log(target)
+        //     ScrollTrigger.create({
+        //         target: target,
+        //         start: 'top top',
+        //         end: '+=200',
+                
+        //         scrub: .2,
+        //         animation: gsap.from(target.querySelectorAll('p'), {alpha: 0, ease: Sine.easeInOut, stagger: 0.2}),
+        //         markers: true
+        //     })
+
+        //     Array.from(target.querySelectorAll('p')).forEach(child => {
+        //         // console.log(child);
+        //         // ScrollTrigger.create({
+        //         //     target: child,
+        //         //     start: 'top 100%',
+        //         //     // end: 'top 50%',
+        //         //     scrub: .2,
+        //         //     animation: gsap.from(child, {alpha: 0, ease: Sine.easeInOut})
+        //         // })
+
+        //     });
+
+
+        // });
+
     }
 
 }
 
-const app = new AppMain('https://interactive.guim.co.uk/docsdata/1YJuvtQuxlx7_gqAnBvicOIfs6JmU7ctfSvKMrgar7Wg.json');
+window.addEventListener('load', e => {
+    // https://docs.google.com/spreadsheets/d/1_ewZazGdgFXGWU_zNQk-0pNMBLF5_gGUWq8s6gJhXA0/edit?usp=sharing
+    const app = new AppMain('https://interactive.guim.co.uk/docsdata/1_ewZazGdgFXGWU_zNQk-0pNMBLF5_gGUWq8s6gJhXA0.json');
+
+});
+
