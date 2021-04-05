@@ -55,6 +55,8 @@ class AppMain {
 
     intro() {
         gsap.to('#Glabs', {duration: 2, autoAlpha: 1, delay: 1});
+
+        gsap.from('header .bg',{ backgroundPositionX: '-50', duration: 100, ease:'lenear.inOut'})
     }
     
 
