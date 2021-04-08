@@ -35,7 +35,7 @@ body {
   color: white;
   --shadow-color: #000;
   span {
-      line-height: 1.5;
+      line-height: 1.3;
       // padding: 4px 0;
       box-shadow: -20px 0px 0 2px var(--shadow-color), 20px 0px 0 2px var(--shadow-color), 0 0 0 2px var(--shadow-color);
       box-decoration-break: clone;
@@ -73,6 +73,7 @@ body {
 }
 
 h1, h2 {
+  line-height: 1.2;
   span {
     font-family: "Guardian Headline Bold", serif;
   }
@@ -126,13 +127,15 @@ header {
     // width: 120vw;
     // background-attachment: fixed;
     background-size: cover;
-    background-position: 50% 60%;
+    // background-position: 50% 60%;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: space-between;    
-    @include mq(desktop) {
-      background-size: contain;
-    }
+    border: 10px solid #FFB321;
+    // @include mq(desktop) {
+    //   background-size: contain;
+    // }
   }
 
   .title {
@@ -196,6 +199,10 @@ section {
     }
   }
 
+  .panel .wrap {
+    padding: 0 1rem 2rem 1rem;
+  }
+
   @include mq(desktop) {
     .wrap {
       max-width: 30rem;
@@ -222,6 +229,7 @@ section {
     position: relative;
     background: white;
     border-radius: 10px;
+
 
     .title {
       background: #F7F3EB;
