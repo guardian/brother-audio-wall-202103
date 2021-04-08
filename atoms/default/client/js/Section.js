@@ -116,16 +116,24 @@ const Section = (props) => {
         <section ref={sectionRef} className={`container feature ${props.panel}`}>
             <div className="panel" ref={panelRef}>
                 <div className="bg">
+                    <div className="wrap">
 
-                    <Collage {...props} />
-                    <div className="audio">
-                        <AudioPlayer title="" src={`<%= path %>/audio/${props.audio}`}  />
-                        <div dangerouslySetInnerHTML={innerHTML(props.audioDesc)} ></div>
+                        <Collage {...props} />
+                        <div className="audio">
+                            <div className="title">Listen</div>
+                            <div className="player-body">
+                                <AudioPlayer title="" src={`<%= path %>/audio/${props.audio}`}  />
+                                <div dangerouslySetInnerHTML={innerHTML(props.audioDesc)} ></div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div className="content" ref={contentRef} dangerouslySetInnerHTML={innerHTML(props.content)}></div>
+            <div className="content">
+                <div className="wrap" ref={contentRef} dangerouslySetInnerHTML={innerHTML(props.content)}></div>
+            </div>
         </section>
     )
 }

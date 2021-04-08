@@ -25,6 +25,10 @@ body {
   }
 }
 
+#Live {
+  margin-top: 5vh;
+}
+
 .text-bg {
   padding: 1rem 0 0;
   // margin: 2rem 0;
@@ -64,13 +68,13 @@ body {
 // }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto 5vh;
+  // max-width: 1200px;
+  // margin: 0 auto 5vh;
 }
 
-h1 {
+h1, h2 {
   span {
-    font-family: "Guardian Headline Regular", serif;
+    font-family: "Guardian Headline Bold", serif;
   }
 }
 
@@ -98,7 +102,7 @@ q {
 #Glabs {
   // visibility: hidden;
   opacity: 0;
-
+  background-color: #F7F3EB;
 }
 
 header {
@@ -117,12 +121,15 @@ header {
     mix-blend-mode: screen;
   }
   .bg {
-    position: absolute;
+    // position: absolute;
     height: 80vh;
-    width: 120vw;
+    // width: 120vw;
     // background-attachment: fixed;
     background-size: cover;
     background-position: 50% 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;    
     @include mq(desktop) {
       background-size: contain;
     }
@@ -146,6 +153,18 @@ header {
       max-width: 50%;
     }
   }
+
+  .client {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem;
+    color: white;
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 1rem;
+    }
+  }
 }
 
 section {
@@ -160,12 +179,14 @@ section {
   &.container {
     &>div {
       flex-basis: 50%;
+      // width: 50%;
     }
   }
   .content {
     padding: 2rem;
+    // padding-bottom: 10rem;
     @include mq(desktop) {
-      padding: 5rem 4rem 0;
+      padding: 5rem 4rem 5rem;
     }
 
     a {
@@ -174,6 +195,19 @@ section {
       font-weight: normal;
     }
   }
+
+  @include mq(desktop) {
+    .wrap {
+      max-width: 30rem;
+    }
+    
+    .panel .wrap {
+      margin-left: auto;
+      margin-right: 1.5rem;
+    }
+
+  }
+
 
 
   .panel {
@@ -185,12 +219,25 @@ section {
   }
 
   .audio {
-    padding: 0 2rem 2rem;
+    position: relative;
+    background: white;
+    border-radius: 10px;
+
+    .title {
+      background: #F7F3EB;
+      border-radius: 10px 10px 0 0;
+      padding: 0.5rem 2rem;
+    }
+    .player-body {
+      padding: 0 2rem 2rem;
+    }
 
     @include mq(tablet) {
       // width: 80%;
       margin: 0 auto;
+      max-width: 30rem;
     }
+
   }
   .bg {
     background: url("<%= path %>/texture.png") no-repeat 50% var(--panelBgColor);
