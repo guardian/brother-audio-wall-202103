@@ -102,7 +102,12 @@ video {
     button.btn-subs {
         width: 50px;
         padding: 5px;
-    }    
+    }
+
+    .btn-skip {
+        width: 40px;
+        height: 40px;
+    }
 
     .st1 {
         fill: white;
@@ -129,7 +134,7 @@ video {
         .track {
             cursor: pointer;
             height: 8px;
-            background-color: #e0e0e0;
+            background-color: rgba(0,0,0,.2);
             width: 100%;
             margin: auto;
             .current {
