@@ -53,6 +53,7 @@ const Section = (props) => {
         sectionRef.current.style.setProperty('--panelBgColor', props.bgColor);
 
         // Pin
+
         ScrollTrigger.matchMedia({
             "(min-width: 980px)": function() {
                 const st = ScrollTrigger.create({
@@ -71,6 +72,10 @@ const Section = (props) => {
                 }
             }
         });
+        //refresh with depaly to allow for page to settle
+        setTimeout(()=>{
+            ScrollTrigger.refresh();
+        }, 1500);
 
         // Heading animation
         const h2 = contentRef.current.getElementsByTagName('h2');
