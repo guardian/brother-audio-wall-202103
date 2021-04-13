@@ -22,8 +22,8 @@ video {
 
     .ap-container {
         width: 100%;
-        display: flex;
         @include mq(tablet) {
+            display: flex;
         }
         // justify-content: center
         align-items: center;
@@ -122,10 +122,19 @@ video {
 
     }
 
+    .controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .progress-bar {
-        margin: 1rem;
+        margin-bottom: 1rem;
         width: 100%;
         position: relative;
+        @include mq(tablet) {
+            margin-left: 1rem;
+        }
         // .title {
         //     position: absolute;
         //     top: -45px;

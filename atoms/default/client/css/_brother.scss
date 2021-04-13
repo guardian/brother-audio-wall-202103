@@ -30,7 +30,7 @@ body {
 }
 
 .text-bg {
-  padding: 1rem 0 0;
+  padding: 1rem 2rem 0 0;
   // margin: 2rem 0;
   color: white;
   --shadow-color: #000;
@@ -133,9 +133,9 @@ header {
     flex-direction: column;
     justify-content: space-between;    
     border: 10px solid #FFB321;
-    // @include mq(desktop) {
-    //   background-size: contain;
-    // }
+    @include mq($until: desktop) {
+      background-position: 50%;
+    }
   }
 
   .title {
@@ -260,8 +260,9 @@ section {
     justify-content: center;
 
     .collage {
-      height: 56vh;
-      @include mq(desktop) {
+      height: 40vh;
+      @include mq(tablet) {
+        height: 56vh;
       }
       position: relative;
       img {
