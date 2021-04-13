@@ -45,6 +45,7 @@ class AppMain {
             }
         });
 
+        $('.client a').href = sheet.logoLink;
         
         render(<RelatedContent cards={data.sheets.related} />, $('.related'));
 
