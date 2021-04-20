@@ -246,6 +246,10 @@ section {
       max-width: 30rem;
     }
 
+    .desc p {
+      font-size: 1rem;
+    }
+
   }
   .bg {
     background: url("<%= path %>/texture.png") no-repeat 50% var(--panelBgColor);

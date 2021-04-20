@@ -15,6 +15,7 @@ video {
 .audio-player {
     position: relative;
     padding: 2rem 0;
+    background-color: #fff;
     // padding: 45px 1rem 1rem;
     // background-color: #f1f1f1;
     // align-items: flex-end;
@@ -69,6 +70,8 @@ video {
         
         svg {
             fill: #1d1d1d;
+            height: 40px;
+            width: 40px;
         }
 
         &:hover, &.active {

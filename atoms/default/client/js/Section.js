@@ -128,7 +128,7 @@ const Section = (props) => {
                             <div className="title">Listen</div>
                             <div className="player-body">
                                 <AudioPlayer title="" src={`<%= path %>/audio/${props.audio}`}  />
-                                <div dangerouslySetInnerHTML={innerHTML(props.audioDesc)} ></div>
+                                <div className="desc" dangerouslySetInnerHTML={innerHTML(props.audioDesc)} ></div>
 
                             </div>
                         </div>
